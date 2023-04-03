@@ -1,0 +1,24 @@
+INSERT INTO client (name, surname) VALUES ('Sheldon', 'Cooper');
+INSERT INTO client (name, surname) VALUES ('Leonard', 'Hofstadter');
+INSERT INTO client (name, surname) VALUES ('Penny', 'Hofstadter');
+INSERT INTO client (name, surname) VALUES ('Howard', 'Wolowitz');
+INSERT INTO client (name, surname) VALUES ('Raj', 'Koothrappali');
+INSERT INTO client (name, surname) VALUES ('Bernadette', 'Rostenkowski');
+INSERT INTO client (name, surname) VALUES ('Amy', 'Farrah Fowler');
+INSERT INTO client (name, surname) VALUES ('Stuart', 'Bloom');
+INSERT INTO client (name, surname) VALUES ('Wil', 'Wheaton');
+INSERT INTO client (name, surname) VALUES ('Barry', 'Kripke');
+INSERT INTO client (name, surname) VALUES ('Bert', 'Kibbler');
+INSERT INTO client (name, surname) VALUES ('Mary', 'Cooper');
+INSERT INTO client (name, surname) VALUES ('Zack', 'Johnson');
+INSERT INTO client (name, surname) VALUES ('Leslie', 'Winkle');
+INSERT INTO client (name, surname) VALUES ('Janine', 'Davis');
+INSERT INTO client (name, surname) VALUES ('Alex', 'Jensen');
+INSERT INTO client (name, surname) VALUES ('Eric', 'Gablehauser');
+INSERT INTO client (name, surname) VALUES ('Mike', 'Rostenkowski');
+INSERT INTO client (name, surname) VALUES ('Priya', 'Koothrappali');
+INSERT INTO client (name, surname) VALUES ('Emily', 'Sweeney');
+
+insert into car (client_id, brand, registration_number) values (1, 'Ferrari', 'NE1234A');
+insert into car (client_id, brand, registration_number) values (1, 'Porshe', 'GD1234A');
+insert into car (client_id, brand, registration_number) values (2, 'Nissan', 'NO1234A');
