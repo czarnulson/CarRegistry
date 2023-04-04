@@ -8,20 +8,18 @@ import org.springframework.stereotype.Component;
 public class ClientPersistenceMapper {
 
     public ClientEntity toClientEntity(Client client) {
-        ClientEntity clientEntity = new ClientEntity();
-        clientEntity.setId(client.getId());
-        clientEntity.setName(client.getName());
-        clientEntity.setSurname(client.getSurname());
-
-        return clientEntity;
+        return ClientEntity.builder()
+                .uuid(client.getUuid())
+                .name(client.getName())
+                .surname(client.getSurname())
+                .build();
     }
 
     public Client toDomain(ClientEntity clientEntity) {
-        Client client = new Client();
-        client.setId(clientEntity.getId());
-        client.setName(clientEntity.getName());
-        client.setSurname(clientEntity.getSurname());
-
-        return client;
+        return Client.builder()
+                .uuid(clientEntity.getUuid())
+                .name(clientEntity.getName())
+                .surname(clientEntity.getSurname())
+                .build();
     }
 }

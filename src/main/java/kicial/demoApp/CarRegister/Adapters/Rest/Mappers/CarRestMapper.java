@@ -14,20 +14,18 @@ public class CarRestMapper {
     ClientService clientService;
 
     public Car toDomain(CarDTO carDTO) throws ClientNotFoundException {
-        Car car = new Car();
-        car.setBrand(carDTO.getBrand());
-        car.setRegistrationNumber(carDTO.getRegistrationNumber());
-        car.setClient(clientService.getById(carDTO.getClientId()));
-
-        return car;
+        return Car.builder()
+                .brand(carDTO.getBrand())
+                .registrationNumber(carDTO.getRegistrationNumber())
+                .client(clientService.getById(carDTO.getClientId()))
+                .build();
     }
 
     public CarDTO toDTO(Car car) {
-        CarDTO carDTO = new CarDTO();
-        carDTO.setBrand(car.getBrand());
-        carDTO.setClientId(car.getClient().getId());
-        carDTO.setRegistrationNumber(car.getRegistrationNumber());
-
-        return carDTO;
+        return CarDTO.builder()
+                .brand(car.getBrand())
+                .clientId(car.getClient().getUuid())
+                .registrationNumber(car.getRegistrationNumber())
+                .build();
     }
 }

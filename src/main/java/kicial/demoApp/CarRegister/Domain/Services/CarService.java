@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CarService implements CarServicePort {
@@ -23,7 +24,7 @@ public class CarService implements CarServicePort {
         return carRepositoryPort.add(car);
     }
 
-    public List<Car> getAllByClientId(Long id) {
+    public List<Car> getAllByClientId(UUID id) {
         return carRepositoryPort.getAllByClientEntityId(id);
     }
 }

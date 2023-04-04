@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public class ClientRepository implements ClientRepositoryPort{
@@ -28,8 +29,8 @@ public class ClientRepository implements ClientRepositoryPort{
     }
 
     @Override
-    public Optional<Client> getById(Long id) {
-        return clientRepositoryJpa.findById(id).map(clientPersistenceMapper::toDomain);
+    public Optional<Client> getById(UUID id) {
+        return clientRepositoryJpa.findByUuid(id).map(clientPersistenceMapper::toDomain);
     }
 
     @Override
@@ -45,7 +46,7 @@ public class ClientRepository implements ClientRepositoryPort{
     }
 
     @Override
-    public void delete(Long id) {
-        clientRepositoryJpa.deleteById(id);
+    public void delete(UUID id) {
+        clientRepositoryJpa.deleteByUuid(id);
     }
 }

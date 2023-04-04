@@ -1,17 +1,18 @@
 package kicial.demoApp.CarRegister.Domain.Model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.util.List;
+import java.util.UUID;
 
-@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class Client {
 
-    private Long id;
+    @Builder.Default
+    private UUID uuid = UUID.randomUUID();
 
     private String name;
 

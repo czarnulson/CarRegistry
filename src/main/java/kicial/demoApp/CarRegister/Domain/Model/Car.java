@@ -1,15 +1,20 @@
 package kicial.demoApp.CarRegister.Domain.Model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+import java.util.UUID;
+
+@Builder
 @AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 public class Car {
 
-    private Long id;
+    @Builder.Default
+    private UUID uuid = UUID.randomUUID();
 
     private String brand;
 

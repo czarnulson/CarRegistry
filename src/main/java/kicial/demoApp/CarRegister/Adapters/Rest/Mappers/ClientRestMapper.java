@@ -8,18 +8,17 @@ import org.springframework.stereotype.Component;
 public class ClientRestMapper {
 
     public ClientDTO toDTO(Client client) {
-        ClientDTO clientDTO = new ClientDTO();
-        clientDTO.setName(client.getName());
-        clientDTO.setSurname(client.getSurname());
-
-        return clientDTO;
+        return ClientDTO.builder()
+                .uuid(client.getUuid())
+                .name(client.getName())
+                .surname(client.getSurname())
+                .build();
     }
 
     public Client toDomain(ClientDTO clientDTO) {
-        Client client = new Client();
-        client.setName(clientDTO.getName());
-        client.setSurname(clientDTO.getSurname());
-
-        return client;
+        return Client.builder()
+                .name(clientDTO.getName())
+                .surname(clientDTO.getSurname())
+                .build();
     }
 }

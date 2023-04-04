@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/client")
@@ -28,8 +29,8 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public ClientDTO getById(@PathVariable("id") Long id) throws ClientNotFoundException {
-        return clientRestMapper.toDTO(clientService.getById(id));
+    public ClientDTO getById(@PathVariable("id") String id) throws ClientNotFoundException {
+        return clientRestMapper.toDTO(clientService.getById(UUID.fromString(id)));
     }
 
     @PostMapping("")
@@ -40,14 +41,14 @@ public class ClientController {
     }
 
     @PutMapping("/{id}")
-    public ClientDTO update(@PathVariable("id") Long id, @RequestBody ClientDTO clientDTO) throws ClientNotFoundException {
-        Client client = clientService.update(id, clientRestMapper.toDomain(clientDTO));
+    public ClientDTO update(@PathVariable("id") String id, @RequestBody ClientDTO clientDTO) throws ClientNotFoundException {
+        Client client = clientService.update(UUID.fromString(id), clientRestMapper.toDomain(clientDTO));
 
         return clientRestMapper.toDTO(client);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id) {
-        clientService.delete(id);
+    public void delete(@PathVariable("id") String id) {
+        clientService.delete(UUID.fromString(id));
     }
 }

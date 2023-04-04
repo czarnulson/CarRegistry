@@ -4,10 +4,11 @@ import kicial.demoApp.CarRegister.Domain.Exceptions.RegistrationNumberUsedExcept
 import kicial.demoApp.CarRegister.Domain.Model.Car;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface CarServicePort {
 
     Car add(Car car) throws RegistrationNumberUsedException;
 
-    List<Car> getAllByClientId(Long id);
+    List<Car> getAllByClientId(UUID id);
 }

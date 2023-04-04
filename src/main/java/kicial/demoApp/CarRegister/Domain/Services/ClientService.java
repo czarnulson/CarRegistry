@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ClientService implements ClientServicePort {
@@ -21,7 +22,7 @@ public class ClientService implements ClientServicePort {
         return clientRepositoryPort.getAll(page, pageSize);
     }
 
-    public Client getById(Long id) throws ClientNotFoundException {
+    public Client getById(UUID id) throws ClientNotFoundException {
         return clientRepositoryPort.getById(id).orElseThrow(ClientNotFoundException::new);
     }
 
@@ -29,7 +30,7 @@ public class ClientService implements ClientServicePort {
         return clientRepositoryPort.add(client);
     }
 
-    public Client update(Long id, Client updatedClient) throws ClientNotFoundException {
+    public Client update(UUID id, Client updatedClient) throws ClientNotFoundException {
         Client client = this.getById(id);
 
         client.setName(updatedClient.getName());
@@ -38,7 +39,7 @@ public class ClientService implements ClientServicePort {
         return clientRepositoryPort.update(client);
     }
 
-    public void delete(Long id) {
+    public void delete(UUID id) {
         clientRepositoryPort.delete(id);
     }
 }

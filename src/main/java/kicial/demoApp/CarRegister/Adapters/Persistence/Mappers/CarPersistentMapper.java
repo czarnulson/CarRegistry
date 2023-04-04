@@ -12,20 +12,20 @@ public class CarPersistentMapper {
     ClientPersistenceMapper clientEntityMapper;
 
     public CarEntity toEntity(Car car) {
-        return new CarEntity(
-                car.getBrand(),
-                car.getRegistrationNumber(),
-                clientEntityMapper.toClientEntity(car.getClient())
-        );
+        return CarEntity.builder()
+                .uuid(car.getUuid())
+                .brand(car.getBrand())
+                .registrationNumber(car.getRegistrationNumber())
+                .clientEntity(clientEntityMapper.toClientEntity(car.getClient()))
+                .build();
     }
 
     public Car toDomain(CarEntity car) {
-        Car carDomain = new Car();
-        carDomain.setId(car.getId());
-        carDomain.setBrand(car.getBrand());
-        carDomain.setRegistrationNumber(car.getRegistrationNumber());
-        carDomain.setClient(clientEntityMapper.toDomain(car.getClientEntity()));
-
-        return carDomain;
+        return Car.builder()
+                .uuid(car.getUuid())
+                .brand(car.getBrand())
+                .registrationNumber(car.getRegistrationNumber())
+                .client(clientEntityMapper.toDomain(car.getClientEntity()))
+                .build();
     }
 }

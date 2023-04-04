@@ -12,6 +12,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -28,10 +29,10 @@ public class CarServiceTest {
     @Test
     public void shouldReturnListOfCars() {
         // given
-        Long clientId = 1L;
+        UUID clientId = UUID.randomUUID();
         List<Car> carsExpected = Arrays.asList(
-                new Car(1L, "Toyota", "GD1234A", new Client()),
-                new Car(2L, "Honda", "GD1234B", new Client())
+                new Car(UUID.randomUUID(), "Toyota", "GD1234A", new Client()),
+                new Car(UUID.randomUUID(), "Honda", "GD1234B", new Client())
         );
 
         when(carRepositoryPort.getAllByClientEntityId(clientId)).thenReturn(carsExpected);
@@ -46,7 +47,7 @@ public class CarServiceTest {
     @Test
     public void shouldAddCar() throws RegistrationNumberUsedException {
         // given
-        Car car = new Car(1L, "Toyota", "GD1234A", new Client());
+        Car car = new Car(UUID.randomUUID(), "Toyota", "GD1234A", new Client());
 
         when(carRepositoryPort.existsByRegistrationNumber(car.getRegistrationNumber())).thenReturn(false);
         when(carRepositoryPort.add(car)).thenReturn(car);
@@ -56,7 +57,7 @@ public class CarServiceTest {
 
         // then
         assertNotNull(result);
-        assertEquals(car.getId(), result.getId());
+        assertEquals(car.getUuid(), result.getUuid());
         assertEquals(car.getBrand(), result.getBrand());
         assertEquals(car.getRegistrationNumber(), result.getRegistrationNumber());
         assertEquals(car.getClient(), result.getClient());
@@ -68,7 +69,7 @@ public class CarServiceTest {
     @Test
     public void addShouldThrowRegistrationNumberUsedException() {
         // given
-        Car car = new Car(1L, "Toyota", "GD1234A", new Client());
+        Car car = new Car(UUID.randomUUID(), "Toyota", "GD1234A", new Client());
 
         when(carRepositoryPort.existsByRegistrationNumber(car.getRegistrationNumber())).thenReturn(true);
 

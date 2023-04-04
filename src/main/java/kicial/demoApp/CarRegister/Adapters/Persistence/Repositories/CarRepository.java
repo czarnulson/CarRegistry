@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class CarRepository implements CarRepositoryPort {
@@ -26,8 +27,8 @@ public class CarRepository implements CarRepositoryPort {
     }
 
     @Override
-    public List<Car> getAllByClientEntityId(Long id) {
-        return carRepositoryJpa.findAllByClientEntity_Id(id).stream().map(carEntityMapper::toDomain).toList();
+    public List<Car> getAllByClientEntityId(UUID id) {
+        return carRepositoryJpa.findAllByClientEntity_Uuid(id).stream().map(carEntityMapper::toDomain).toList();
     }
 
     @Override

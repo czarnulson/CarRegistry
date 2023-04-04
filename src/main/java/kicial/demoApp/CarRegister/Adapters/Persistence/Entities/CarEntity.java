@@ -2,31 +2,33 @@ package kicial.demoApp.CarRegister.Adapters.Persistence.Entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.UUID;
 
 @Entity
 @Table(name = "car")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class CarEntity {
 
-    public CarEntity(String brand, String registrationNumber, ClientEntity clientEntity) {
-        this.brand = brand;
-        this.registrationNumber = registrationNumber;
-        this.clientEntity = clientEntity;
-    }
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue
+    private UUID uuid;
 
     @ManyToOne
-    @JoinColumn(name="client_id")
+    @JoinColumn(name="client_uuid")
     private ClientEntity clientEntity;
 
     private String brand;
 
     private String registrationNumber;
+
+    public void setUuid(String uuid) {
+        this.uuid = UUID.fromString(uuid);
+    }
 }

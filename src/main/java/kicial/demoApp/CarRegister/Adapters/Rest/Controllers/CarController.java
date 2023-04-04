@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/car")
@@ -36,8 +37,8 @@ public class CarController {
     }
 
     @GetMapping("/{clientId}")
-    public List<CarDTO> getAllByClientId(@Valid @PathVariable("clientId") Long clientId) {
+    public List<CarDTO> getAllByClientId(@Valid @PathVariable("clientId") String clientId) {
 
-        return carService.getAllByClientId(clientId).stream().map(carRestMapper::toDTO).toList();
+        return carService.getAllByClientId(UUID.fromString(clientId)).stream().map(carRestMapper::toDTO).toList();
     }
 }
